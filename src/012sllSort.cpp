@@ -21,6 +21,31 @@ struct node {
 	struct node *next;
 };
 
+typedef struct node *position;
+typedef struct node *list;
+
+void swap(list ll, position p, position q)
+{
+	int t;
+	t = p->data;
+	p->data = q->data;
+	q->data = t;
+}
+
 void sll_012_sort(struct node *head){
-	
+	position p, q;
+	for (p = head; p->next != NULL; p = p->next)
+	{
+		for (q = p->next; q->next != NULL; q = q->next)
+		{
+			if (p->data > q->data)
+				swap(head, p, q);
+		}
+	}
+	list temp;
+	temp = (list)malloc(sizeof(struct node *));
+	temp->data = head->data;
+	temp->next = head->next;
+	head->data = NULL;
+	head->next = temp;
 }

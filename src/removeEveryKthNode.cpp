@@ -12,12 +12,41 @@ NOTES:
 */
 
 #include <stdio.h>
-
+#include<stdlib.h>
 struct node {
 	int num;
 	struct node *next;
 };
-
+typedef struct node *position;
+typedef struct node *list;
+position prevpos(list ll, position p)
+{
+	position q = ll;
+	while (q->next != p)
+		q = q->next;
+	return q;
+}
 struct node * removeEveryKthNode(struct node *head, int K) {
-	return NULL;
+	if (K < 0 || head == NULL)
+		return NULL;
+	else if (K == 0)
+		return 0;
+	else if (K == 1)
+		return NULL;
+	else
+	{
+		position i,j;
+		int n = 0;
+		for (i = head; i->next != NULL; i = i->next)
+		{
+			n++;
+			if (n == K)
+			{
+				j = prevpos(head, i);
+				j->next = i->next;
+				n = 0;
+			}
+		}
+		return head;
+	}
 }
