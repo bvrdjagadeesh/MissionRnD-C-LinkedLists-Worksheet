@@ -21,13 +21,30 @@ struct node {
 	struct node *next;
 };
 
+typedef struct node * position;
+typedef struct node * list;
+position endp(list ll)
+{
+	list t = ll;
+	while (t->next != NULL)
+		t = t->next;
+	return t->next;
+}
 int convert_sll_2digit_to_int(struct node *head){
 	if (head->digit1==0&&head->digit2==0&&head->next==NULL)
 		return 0;
 	else
 	{
-		int n;
-		struct node * i;
-		for (i = head; i->next != NULL;);
+		int n,m,no=0;
+		position i;
+		for (i = head; i != endp(head); i = i->next)
+		{
+			n = i->digit1;
+			m = i->digit2;
+			no = no * 10 + n;
+			no = no * 10 + m;
+
+		}
+		return no;
 	}
 }

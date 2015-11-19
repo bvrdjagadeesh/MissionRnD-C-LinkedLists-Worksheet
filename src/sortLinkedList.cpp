@@ -33,7 +33,7 @@ position endpos(list ll)
 	list t = ll;
 	while (t->next != NULL)
 		t = t->next;
-	return t;
+	return t->next;
 }
 struct node * sortLinkedList(struct node *head) {
 	if (head!=NULL)

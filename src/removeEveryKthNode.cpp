@@ -26,6 +26,13 @@ position prevpos(list ll, position p)
 		q = q->next;
 	return q;
 }
+position end(list ll)
+{
+	list t = ll;
+	while (t->next != NULL)
+		t = t->next;
+	return t->next;
+}
 struct node * removeEveryKthNode(struct node *head, int K) {
 	if (K < 0 || head == NULL)
 		return NULL;
@@ -37,7 +44,7 @@ struct node * removeEveryKthNode(struct node *head, int K) {
 	{
 		position i,j;
 		int n = 0;
-		for (i = head; i->next != NULL; i = i->next)
+		for (i = head; i!=end(head); i = i->next)
 		{
 			n++;
 			if (n == K)

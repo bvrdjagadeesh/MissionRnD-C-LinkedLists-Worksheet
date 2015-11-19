@@ -31,21 +31,22 @@ void swap(list ll, position p, position q)
 	p->data = q->data;
 	q->data = t;
 }
+position endpo(list ll)
+{
+	list t = ll;
+	while (t->next != NULL)
+		t = t->next;
+	return t->next;
+}
 
 void sll_012_sort(struct node *head){
 	position p, q;
-	for (p = head; p->next != NULL; p = p->next)
+	for (p = head; p != endpo(head); p = p->next)
 	{
-		for (q = p->next; q->next != NULL; q = q->next)
+		for (q = p->next; q != endpo(head); q = q->next)
 		{
 			if (p->data > q->data)
 				swap(head, p, q);
 		}
 	}
-	list temp;
-	temp = (list)malloc(sizeof(struct node *));
-	temp->data = head->data;
-	temp->next = head->next;
-	head->data = NULL;
-	head->next = temp;
 }
